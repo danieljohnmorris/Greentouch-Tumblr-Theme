@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>{block:PostSummary}{PostSummary} - {/block:PostSummary}{Title}</title>
+	<link rel="shortcut icon" href="{Favicon}">
+	<link rel="alternate" type="application/rss+xml" href="{RSS}">
+    {block:Description}
+    <meta name="description" content="{MetaDescription}" />
+    {/block:Description}
+      
+	<!-- Show Notes -->
+	<meta name="if:Show notes" content="1">
+	
+	<link rel="stylesheet" href="http://static.tumblr.com/26l8vc7/pXqldbarp/style.css">
+	<style type="text/css">
+		{CustomCSS}
+		#header h1 a {
+		    filter:alpha(opacity=50);
+		    opacity:0.5;
+		}
+		#header h1 a:hover {
+		    filter:alpha(opacity=100);
+		    opacity:1;
+		}
+
+		#description ul li {
+			display: inline-block;
+			margin-left: 15px;
+			font-size: 20px;
+		}
+			#description ul li#first {
+				margin-left: 0;
+			}
+			#description ul li a {
+				color: black;
+			}
+
+		ul.section-links {
+			margin: 10px 0 0 0;
+		}
+
+		ul.social-links {
+			display: inline-block;
+			margin: 0 0 0 10px;
+			padding: 0;
+		}
+			ul.social-links li {
+				display: inline;
+			}
+				ul.social-links li img {
+					height: 22px;
+				}
+		
+		#content {
+			padding-top: 240px;
+		}
+				
+		.post {
+			margin-bottom: 40px;
+		}
+		
+		.post .description {
+			margin-bottom: 20px;
+		}
+		
+		.date {
+		    background: url("/thimble/assets/images/sprite7.png") no-repeat scroll left bottom transparent;
+		    float: left;
+		    margin-left: -120px;
+		    padding-bottom: 14px;
+		    width: 100px;
+		}
+			.date p {
+				background-color: #8BCC2F;
+			}
+		
+		.quote {
+			background-color: #F2F2F2;
+		}
+
+		#pagination {
+			margin-top: 50px;
+		}
+		
+		.links a {
+		    border-right: 2px solid #EEEEEE;
+		    padding-right: 30px;
+		}
+		
+		span.tel {
+			font-style: italic;
+		}
+		
+		ul.footer-social-links {
+			padding: 0;
+			display: inline-block;
+		}
+			ul.footer-social-links li {
+				display: inline;
+			}
+				ul.footer-social-links li a img {
+					height: 26px;
+			    	filter:alpha(opacity=50);
+			    	opacity:0.5;
+				}
+					ul.footer-social-links li a img:hover {
+				    	filter:alpha(opacity=100);
+				    	opacity:1;
+					}
+
+		#header h1 a:hover {
+			color: #000;
+		}
+		a:hover,
+		#description ul li a:hover,
+		.links a:hover,
+		.link .link a:hover {
+				color: #7ab525;
+		}
+		
+		p.list-intro {
+			margin-bottom: 10px;
+		}
+		
+		#contact, 
+		#elsewhere {
+			width: 45%;
+		}
+		#contact {
+			float: left;
+		}
+		#elsewhere {
+			float: right;
+		}
+		#copyright {
+			clear: both;
+			padding-top: 30px;
+		}
+			#copyright p {
+				border-top: 1px dotted #A9A9A9;
+				padding-top: 10px;
+			}
+		ul#contact-list {
+			padding: 0 0 0 20px;
+		}
+			ul#contact-list li img {
+			    filter:alpha(opacity=50);
+			    opacity:0.5;
+			}
+			ul#contact-list li:hover img {
+			    filter:alpha(opacity=100);
+			    opacity:1;
+			}
+		
+	</style>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="header" role="banner">
+			<h1>
+				<a href="http://twitter.com/#!/danielmorris" title="Follow / ping me on Twitter"><img src="/thimble/assets/images/buddycons/circular/twitter_32.png" alt="Twitter icon" /></a>
+				<a href="/" title="Homepage thingamajig">{Title}</a>
+				<a href="http://www.linkedin.com/in/danieljohnmorris" title="Connect with me on LinkedIn"><img src="/thimble/assets/images/buddycons/circular/linkedin_32.png" alt="LinkedIn icon"/></a>
+			</h1>
+			
+			{block:Description}
+			<div id="description">
+				<p>{Description}</p>
+			</div>
+			{/block:Description}
+		</div>
+		
+		<div id="navigation">			
+			<div class="wrapper">
+				
+				{block:HasPages} 
+				<ul class="pages links" role="navigation">
+					{block:Pages}
+					<li><a href="{URL}">{Label}</a></li>
+					{/block:Pages}
+				</ul>
+				{/block:HasPages}
+												
+				<form id="search" role="search" action="/search" method="get">
+					<input type="text" name="q" class="search" value="{lang:Search}" onfocus="if(this.value == this.defaultValue) this.value = ''" onblur="if(!this.value) this.value = this.defaultValue" />
+				</form>
+			</div>
+		</div>
+				
+		<div id="content" role="main">
+    		{block:SearchPage}
+    			{block:SearchResults}
+			        <p class="search-results">{lang:Your search for SearchQuery returned SearchResultCount results 2}</p>
+			    {block:SearchResults}      
+      
+    			{block:NoSearchResults}
+    			<div class="post">
+    				<div class="content">
+    					<p>{lang:No search results for SearchQuery 2}</p>	
+    				</div>			        
+			    </div>
+			    {block:NoSearchResults}
+    		{/block:SearchPage}
+    
+			{block:Posts}
+			
+					{block:Text}
+					<div class="post text">
+						{block:Date} 
+						<div class="date">
+							<p><span class="day">{DayOfMonthWithZero}</span> {MonthNumber} / {Year}</p>
+						</div>
+						{/block:Date}
+						
+						<div class="content">
+							{block:Title}
+							<h2><a href="{Permalink}">{Title}</a></h2>
+							
+							{/block:Title}
+		
+							{Body}
+						</div>
+						
+						<div class="info">							
+							{block:HasTags} 
+								<div>
+									<p class="tags-label">Tags:</p>
+									<ul class="tags">
+										{block:Tags}<li><a href="{TagURL}">{Tag}</a></li>{/block:Tags}
+									</ul>
+								</div>
+							{/block:HasTags}
+							<p><a href="{Permalink}">{lang:Permalink}</a> <!-- {block:IfShowNotes}{block:NoteCount}<span class="notes">{NoteCountWithLabel}</span>{/block:NoteCount}{/block:IfShowNotes} --></p>
+						</div>
+					</div>
+					{/block:Text}
+					<!-- /post text -->
+					
+					{block:Link}
+					<div class="post link">
+						{block:Date} 
+						<div class="date">
+							<p><span class="day">{DayOfMonthWithZero}</span> {MonthNumber} / {Year}</p>
+						</div>
+						{/block:Date}
+						
+						<div class="content">
+							<h2 class="link"><a href="{URL}" class="link" {Target}>{Name}</a></h2>
+							{block:Description}
+		                        <div class="description">{Description}</div>
+		                    {/block:Description}
+						</div>
+						
+						<div class="info">							
+							{block:HasTags} 
+								<div>
+									<p class="tags-label">Tags:</p>
+									<ul class="tags">
+										{block:Tags}<li><a href="{TagURL}">{Tag}</a></li>{/block:Tags}
+									</ul>
+								</div>
+							{/block:HasTags}
+							<p><a href="{Permalink}">{lang:Permalink}</a> {block:IfShowNotes}{block:NoteCount}<span class="notes">{NoteCountWithLabel}</span>{/block:NoteCount}{/block:IfShowNotes}</p>
+						</div>
+					</div>
+					{/block:Link}
+					<!-- /post link -->
+					
+					{block:Photo}
+					<div class="post photo">
+						{block:Date} 
+						<div class="date">
+							<p><span class="day">{DayOfMonthWithZero}</span> {MonthNumber} / {Year}</p>
+						</div>
+						{/block:Date}
+						
+						<div class="content">
+							<p>
+								{LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}"/>{LinkCloseTag}
+							</p>
+							{block:Caption}
+							<div class="caption">{Caption}</div>
+							{/block:Caption}
+						</div>
+						
+						<div class="info">							
+							{block:HasTags} 
+								<div>
+									<p class="tags-label">Tags:</p>
+									<ul class="tags">
+										{block:Tags}<li><a href="{TagURL}">{Tag}</a></li>{/block:Tags}
+									</ul>
+								</div>
+							{/block:HasTags}
+							<p><a href="{Permalink}">{lang:Permalink}</a> {block:IfShowNotes}{block:NoteCount}<span class="notes">{NoteCountWithLabel}</span>{/block:NoteCount}{/block:IfShowNotes}</p>
+						</div>
+					</div>
+					{/block:Photo}
+					<!-- /post photo -->
+		
+		
+		
+		
+		
+					{block:Photoset}
+					<div class="post photoset">
+						{block:Date} 
+						<div class="date">
+							<p><span class="day">{DayOfMonthWithZero}</span> {MonthNumber} / {Year}</p>
+						</div>
+						{/block:Date}
+						
+						<div class="content">
+							{Photoset-500}
+		
+							{block:Caption}
+							<div class="caption">{Caption}</div>
+							{/block:Caption}
+						</div>
+						
+						<div class="info">							
+							{block:HasTags} 
+								<div>
+									<p class="tags-label">Tags:</p>
+									<ul class="tags">
+										{block:Tags}<li><a href="{TagURL}">{Tag}</a></li>{/block:Tags}
+									</ul>
+								</div>
+							{/block:HasTags}
+							<p><a href="{Permalink}">{lang:Permalink}</a> {block:IfShowNotes}{block:NoteCount}<span class="notes">{NoteCountWithLabel}</span>{/block:NoteCount}{/block:IfShowNotes}</p>
+						</div>
+					</div>
+					{/block:Photoset}
+					<!-- /post photoset -->
+					
+					
+					
+					{block:Quote}
+					<div class="post quote">
+						{block:Date} 
+						<div class="date">
+							<p><span class="day">{DayOfMonthWithZero}</span> {MonthNumber} / {Year}</p>
+						</div>
+						{/block:Date}
+						
+						<div class="content">
+							<blockquote cite="url">
+								<p>"{Quote}"</p>
+							</blockquote>
+							{block:Source}
+							<div class="source">{Source}</div>
+							{block:Source}
+		
+						</div>
+						
+						<div class="info">							
+							{block:HasTags} 
+								<div>
+									<p class="tags-label">Tags:</p>
+									<ul class="tags">
+										{block:Tags}<li><a href="{TagURL}">{Tag}</a></li>{/block:Tags}
+									</ul>
+								</div>
+							{/block:HasTags}
+							<p><a href="{Permalink}">{lang:Permalink}</a> {block:IfShowNotes}{block:NoteCount}<span class="notes">{NoteCountWithLabel}</span>{/block:NoteCount}{/block:IfShowNotes}</p>
+						</div>
+					</div>
+					{/block:Quote}
+					<!-- /post quote -->
+					
+					
+					
+					
+					{block:Chat}
+					<div class="post chat">
+						{block:Date} 
+						<div class="date">
+							<p><span class="day">{DayOfMonthWithZero}</span> {MonthNumber} / {Year}</p>
+						</div>
+						{/block:Date}
+						
+						<div class="content">
+							{block:Title}
+							<h2>{Title}</h2>
+							{/block:Title}
+							
+							<ul class="chat">
+								{block:Lines}
+								<li class="{Alt} user_{UserNumber}">
+									{block:Label}
+									<strong>Yo:</strong>
+									{/block:Label}
+									
+									{Line}
+								</li>
+								{block:Lines}
+							</ul>
+						</div>
+						
+						<div class="info">							
+							{block:HasTags} 
+								<div>
+									<p class="tags-label">Tags:</p>
+									<ul class="tags">
+										{block:Tags}<li><a href="{TagURL}">{Tag}</a></li>{/block:Tags}
+									</ul>
+								</div>
+							{/block:HasTags}
+							<p><a href="{Permalink}">{lang:Permalink}</a> {block:IfShowNotes}{block:NoteCount}<span class="notes">{NoteCountWithLabel}</span>{/block:NoteCount}{/block:IfShowNotes}</p>
+						</div>
+					</div>
+					{/block:Chat}
+					<!-- /post chat -->
+					
+					
+					
+					
+					
+					{block:Video}
+					<div class="post video">
+						{block:Date} 
+						<div class="date">
+							<p><span class="day">{DayOfMonthWithZero}</span> {MonthNumber} / {Year}</p>
+						</div>
+						{/block:Date}
+						
+						<div class="content">
+							{Video-500}
+							
+							{block:Caption}
+								<div class="caption">
+									<p>{Caption}</p>
+								</div>
+							{/block:Caption}										
+						</div>
+						
+						<div class="info">							
+							{block:HasTags} 
+								<div>
+									<p class="tags-label">Tags:</p>
+									<ul class="tags">
+										{block:Tags}<li><a href="{TagURL}">{Tag}</a></li>{/block:Tags}
+									</ul>
+								</div>
+							{/block:HasTags}
+							<p><a href="{Permalink}">{lang:Permalink}</a> {block:IfShowNotes}{block:NoteCount}<span class="notes">{NoteCountWithLabel}</span>{/block:NoteCount}{/block:IfShowNotes}</p>
+						</div>
+					</div>
+					{/block:Video}
+					<!-- /post video -->
+					
+					
+					
+					
+					{block:Audio}
+					<div class="post audio">
+						{block:Date} 
+						<div class="date">
+							<p><span class="day">{DayOfMonthWithZero}</span> {MonthNumber} / {Year}</p>
+						</div>
+						{/block:Date}
+						
+						<div class="content">
+							{AudioPlayerBlack}
+							
+							{block:Caption}
+								<div class="caption">
+									<p>{Caption}</p>
+								</div>
+							{/block:Caption}										
+						</div>
+						
+						<div class="info">							
+							{block:HasTags} 
+								<div>
+									<p class="tags-label">Tags:</p>
+									<ul class="tags">
+										{block:Tags}<li><a href="{TagURL}">{Tag}</a></li>{/block:Tags}
+									</ul>
+								</div>
+							{/block:HasTags}
+							<p><a href="{Permalink}">{lang:Permalink}</a> {block:IfShowNotes}{block:NoteCount}<span class="notes">{NoteCountWithLabel}</span>{/block:NoteCount}{/block:IfShowNotes}</p>
+						</div>
+					</div>
+					{/block:Audio}
+					<!-- /post video -->
+
+			
+			
+			
+			{/block:Posts}
+
+			
+			{block:Pagination}
+			<div id="pagination" role="navigation">
+				<p>						
+					{block:NextPage}
+					<a href="{NextPage}" class="older">&laquo; {lang:Older entries}</a>
+					{/block:NextPage}
+					
+					{block:PreviousPage}
+					<a href="{PreviousPage}" class="newer">{lang:Newer Entries} &raquo;</a>
+					{/block:PreviousPage}
+				</p>
+			</div>
+			{/block:Pagination}
+			
+			
+			{block:PermalinkPagination}
+			<div id="pagination" role="navigation">
+				<p>																										
+					{block:NextPost}
+					<a href="{NextPost}" class="newer">{lang:Next post} &raquo;</a>
+					{/block:NextPost}
+					
+					{block:PreviousPost}
+					<a href="{PreviousPost}" class="older">&laquo; {lang:Previous post}</a>
+					{/block:PreviousPost}
+				</p>
+			</div>
+			{/block:PermalinkPagination}
+		</div>				
+	</div>
+	<!-- /#wrapper -->
+	
+	<div id="footer">
+		<div class="wrapper">
+			<div class="info-theme" role="contentinfo">
+				<!-- <p>
+					<strong>Want to chat?</strong> <a href="http://twitter.com/danielmorris" title="@danielmorris">Mention me on twitter</a> if you do that kind of thing. :P<br />
+					 Alternatively, <a href="mailto:danieljohnmorris@gmail.com" title="danieljohnmorris@gmail.com">drop me an email</a> or call on <span class="vcard"><span class="tel">+44 (0)7595 327777</span></span> (email > voicemail).
+				</p> -->
+				
+				<div id="contact">
+					<p class="list-intro"><strong>Want to chat?</strong> I'd love to speak to you!</p>
+				
+					<ul id="contact-list">
+						<li><img src="/thimble/assets/images/contact_tweet_12x8px.png" /> <a href="http://twitter.com/danielmorris" title="@danielmorris">Mention me on twitter</a></li>
+						<li><img src="/thimble/assets/images/contact_email_12x8px.gif" /> <a href="mailto:danieljohnmorris@gmail.com" title="danieljohnmorris@gmail.com">Drop me an email</a></li>
+						<li><img src="/thimble/assets/images/contact_phone_12x8px.gif" /> Call on <span class="vcard"><span class="tel">+44 (0)7595 327777</span></span></li>
+					</ul>
+				</div>
+				
+				<div id="elsewhere">
+					<p class="list-intro">Find me elsewhere on the web:</p>
+					<ul class="footer-social-links">
+						<li><a rel="me" href="http://twitter.com/danielmorris" title="@danielmorris @ Twitter"><img src="/thimble/assets/images/buddycons/circular/twitter_32.png" alt="Twitter icon"/></a></li>
+						<li><a rel="me" href="http://www.linkedin.com/in/danieljohnmorris" title="danieljohnmorris @ LinkedIn"><img src="/thimble/assets/images/buddycons/circular/linkedin_32.png" alt="LinkedIn icon"/></a></li>
+						<li><a rel="me" href="http://facebook.com/daniel.john.morris" title="danieljohnmorris @ Facebook"><img src="/thimble/assets/images/buddycons/circular/facebook_32.png" alt="Facebook icon"/></a></li>
+						<li><a rel="me" href="http://www.google.com/profiles/daniel.john.morris" title="daniel.john.morris @ Google+"><img src="/thimble/assets/images/buddycons/circular/google_32.png" alt="Google icon"/></a></li>
+						<li><a rel="me" href="skype:echo123?add" title="danieljohnmorris @ Skype"><img src="/thimble/assets/images/buddycons/circular/skype_32.png" alt="Skype icon"/></a></li>
+						<li><a rel="me" href="http://danieljohnmorris.tumblr.com" title="danieljohnmorris @ Tumblr"><img src="/thimble/assets/images/buddycons/circular/tumblr_32.png" alt="Tumblr icon"/></a></li>
+
+						<li><a rel="me" href="http://open.spotify.com/user/danielmorris" title="danielmorris @ Spotify"><img src="/thimble/assets/images/buddycons/circular/spotify_32.png" alt="Spotify icon"/></a></li>
+						<li><a rel="me" href="http://hypem.com/anima" title="anima @ Hype Machine"><img src="/thimble/assets/images/buddycons/circular/hypem_32.png" alt="Hype Machine icon"/></a></li>
+						<li><a rel="me" href="http://www.last.fm/user/animachine" title="animachine @ Last.FM"><img src="/thimble/assets/images/buddycons/circular/lastfm_32.png" alt="Last.FM icon"/></a></li>
+						<li><a rel="me" href="http://soundcloud.com/danieljohnmorris" title="danieljohnmorris @ SoundCloud"><img src="/thimble/assets/images/buddycons/circular/soundcloud_32.png" alt="SoundCloud icon"/></a></li>
+					
+						<li><a rel="me" href="http://delicious.com/danieljohnmorris" title="danieljohnmorris @ Delicious"><img src="/thimble/assets/images/buddycons/circular/delicious_32.png" alt="Delicious icon"/></a></li>
+						<li><a rel="me" href="http://www.flickr.com/photos/_anima_" title="anima @ Flickr"><img src="/thimble/assets/images/buddycons/circular/flickr_32.png" alt="Flickr icon"/></a></li>
+						<li><a rel="me" href="http://dribbble.com/danielmorris/shots/likes" title="danielmorris @ Dribbble"><img src="/thimble/assets/images/buddycons/circular/dribbble_32.png" alt="Dribbble icon"/></a></li>
+						<li><a rel="me" href="http://kuler.adobe.com/#themes/search?term=userId%3A200059" title="daniel.john.morris @ Kuler"><img src="/thimble/assets/images/buddycons/circular/kuler_32.png" alt="Kuler icon"/></a></li>
+						
+						<li><a rel="me" href="http://github.com/danieljohnmorris" title="danieljohnmorris @ GitHub"><img src="/thimble/assets/images/buddycons/circular/github2_32.png" alt="Github icon"/></a></li>
+						<li><a rel="me" href="http://stackoverflow.com/users/42776/danieljohnmorris" title="danieljohnmorris @ StackOverflow"><img src="/thimble/assets/images/buddycons/circular/stackoverflow_32.png" alt="StackOverflow icon"/></a></li>
+					</ul>
+				</div>
+				
+				<div id="copyright">
+					<p>
+						Original blog content by Daniel Morris is licensed under a <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a> (3.0 Unported).<br/>
+						Site powered by <a href="http://www.tumblr.com">Tumblr</a>. Theme adapted from <a href="http://www.tumblr.com/theme/16847">Pink Touch</a> by Kcmr.
+					</p>
+				</div>
+			</div>
+			<!-- <ul class="links" role="navigation">
+				<li><a href="/archive">{lang:Archive}</a></li>
+				<li><a href="{RSS}">{lang:RSS}</a></li>
+			</ul> -->
+		</div>
+	</div>
+</body>
+</html>

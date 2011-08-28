@@ -1,13 +1,17 @@
 ---
-Title: Demo
-Description: "Youth mentoring in tech<ul><li><a href="">One</a></li><li><a href="">Two</a></li></ul>"
+Title: Dan Morris
+Description: 'Helping to create a nation of geekery, one convert at a time.<ul class="section-links"><li><a href="" title="">All</a></li><li><a href="">Young geeks &amp; tech mentoring</a></li><li><a href="">Apps &amp; Startups</a></li><li><a href="">Personal</a></li></ul>'
 MetaDescription: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
 # AskLabel: "Ask me anything"
 # SubmissionsEnabled: true
 # TwitterUsername: markwunsch
 Pages:
-  - Label: About Me
-    URL: about_me/
+  - Label: Blog
+    URL: 
+  - Label: Info &amp; Projects
+    URL: info
+  - Label: Friends &amp; Links
+    URL: links
 Following:
   - Name: staff
     Title: Tumblr Staff
